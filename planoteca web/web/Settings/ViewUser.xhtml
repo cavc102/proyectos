@@ -14,8 +14,8 @@
             </h:panelGroup>
             <h:form id="form" >
                 <h:panelGrid columns="2" styleClass="panelGrid" >
-                    <p:outputLabel value="#{Title.User}" for="Name_Oper" />
-                    <p:inputText id="Name_Oper" value='#{OperatorController.name}' title="#{Title.NameOperator}" style="width: 220px;" />
+                    <p:outputLabel value="#{Title.User}" for="User" />
+                    <p:inputText id="User" value='#{UserController.filterUser}' title="#{Title.User}" style="width: 220px;" />
                     <p:commandButton  value="#{Title.Consult}" action="#{OperatorController.FilterConsultOper(event)}"  ajax="false" icon="ui-icon-disk" /> 
                     </h:panelGrid>
                     <h:panelGrid >
