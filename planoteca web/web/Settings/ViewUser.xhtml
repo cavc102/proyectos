@@ -8,16 +8,14 @@
                 xmlns:p="http://primefaces.org/ui"> 
 
     <ui:define name="body">
-        <p:panel id="basic" header="#{Title.ViewOperator}" footer="#{Title.ViewOperator}" style="margin-bottom:20px">
+        <p:panel id="basic" header="#{Title.ViewUser}" footer="#{Title.ViewUser}" style="margin-bottom:20px">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form id="form" >
                 <h:panelGrid columns="2" styleClass="panelGrid" >
-                    <p:outputLabel value="#{Title.NameOperator}" for="Name_Oper" />
+                    <p:outputLabel value="#{Title.User}" for="Name_Oper" />
                     <p:inputText id="Name_Oper" value='#{OperatorController.name}' title="#{Title.NameOperator}" style="width: 220px;" />
-                    <p:outputLabel value="#{Title.Lastname}" for="Lastname_Oper" />                   
-                    <p:inputText id="Lastname_Oper" value="#{OperatorController.lastname}" title="#{Title.Lastname}"  style="width: 220px;" />
                     <p:commandButton  value="#{Title.Consult}" action="#{OperatorController.FilterConsultOper(event)}"  ajax="false" icon="ui-icon-disk" /> 
                     </h:panelGrid>
                     <h:panelGrid >
