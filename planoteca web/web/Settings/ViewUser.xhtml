@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"> 
+
+    <ui:define name="body">
+        <p:panel id="basic" header="#{Title.ViewOperator}" footer="#{Title.ViewOperator}" style="margin-bottom:20px">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form id="form" >
+                <h:panelGrid columns="2" styleClass="panelGrid" >
+                    <p:outputLabel value="#{Title.NameOperator}" for="Name_Oper" />
+                    <p:inputText id="Name_Oper" value='#{OperatorController.name}' title="#{Title.NameOperator}" style="width: 220px;" />
+                    <p:outputLabel value="#{Title.Lastname}" for="Lastname_Oper" />                   
+                    <p:inputText id="Lastname_Oper" value="#{OperatorController.lastname}" title="#{Title.Lastname}"  style="width: 220px;" />
+                    <p:commandButton  value="#{Title.Consult}" action="#{OperatorController.FilterConsultOper(event)}"  ajax="false" icon="ui-icon-disk" /> 
+                    </h:panelGrid>
+                    <h:panelGrid >
+                         
+                        <p:dataTable id="Operators" var="ItemOper" value="#{OperatorController.getListOperator()}" scrollable="true" scrollHeight="250">
+                          
+                        <p:column headerText="#{Title.Num_id}" >
+                            <h:outputText value="#{ItemOper.num_Id}" />
+                        </p:column>
+
+                        <p:column headerText="#{Title.Type_Doc}" >
+                            <h:outputText value="#{ItemOper.type_Doc}" />
+                        </p:column>
+
+                        <p:column headerText="#{Title.NameOperator}" >
+                            <h:outputText value="#{ItemOper.name_operator}" />
+                        </p:column>
+
+                        <p:column headerText="#{Title.Lastname}" >
+                            <h:outputText value="#{ItemOper.lastName_Operator}" />
+                        </p:column>
+                    </p:dataTable>
+               
+                    </h:panelGrid>
+                <h:panelGrid columns="3" styleClass="link">
+                    <p:commandButton  value="#{Title.Save}"  ajax="false" icon="ui-icon-disk"/> 
+                    <p:commandButton  value="#{Title.Clear}" ajax="false" immediate="true" icon="ui-icon-refresh" onclick="limpiarForm()" update="@form"/>
+                    <p:commandButton icon="ui-icon-home" value="#{Title.Exit}"  action="http://localhost:8080/planoteca_web/faces/Template.xhtml" />
+                </h:panelGrid>   
+            </h:form>
+        </p:panel>
+    </ui:define>
+
+
+
+
+
+
+</ui:composition>

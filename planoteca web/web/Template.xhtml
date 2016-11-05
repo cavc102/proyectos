@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Planoteca Web</title>
+            </f:facet>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+       
+    </h:head>
+
+    <h:body>
+
+            <p:layout fullPage="true">
+
+               
+                <p:layoutUnit  position="north" size="75" resizable="false" closable="false" collapsible="false" style="padding: 0px;background-color: #036fab">
+                    <h:form >  
+                        <p:growl id="messages"/>
+                        <p:panel style="margin-bottom:2px">
+                            <div align="center">
+                                <h:panelGrid columns="5" width="100%" >
+                                
+                            <h:outputLabel value="Sistema Administración De Planos Estrumetal SAPE" style=" font-family: sans-serif; font-size: 20px; font-weight: bold;" />
+                           <p:graphicImage height="35" width="200" value="../resources/img/logolarge.png" style="border:none" /> 
+                            
+                                <h:outputLabel id="usernameLabel"  value="Carlos Alberto Valencia Cocoma " style="font-size: 20px; background: #cf7a7a; border-radius: 3px; border: none; margin-right: 15px; padding-bottom: 4px; padding-left: 7px; box-shadow: 1px 1px 5px #B6B6B6;"/>
+                                <p:commandButton id="logout" value="Salir" icon="ui-icon-power" oncomplete="logout(xhr, status, args)" action="#{loginBean.logoutActionListener}" style="margin-right:15px;" ajax="true"/>
+                        <p:clock />
+                            </h:panelGrid>
+                                </div>
+                        </p:panel>    
+                    </h:form>
+                </p:layoutUnit>
+                
+
+                <p:layoutUnit position="south" size="65" closable="true" collapsible="true" id="footer">
+                    <center>
+                      
+                        <ui:insert name="img">
+                            <img src="../resources/img/logolarge.png"/> 
+                             
+                        </ui:insert>    
+                        
+                    </center>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="280" header="Menu Planoteca" collapsible="true">
+                    <h:form>
+                        
+                            <p:accordionPanel activeIndex="null">
+                                <p:tab id="tabPlane" title="Plano">
+                                <p:menu style="height: 120px; width: 200px;">
+                                    <p:menuitem value="#{Title.CreatePlane}"  icon="ui-icon-disk" outcome="/Plane/CreatePlane"/>
+                                    <p:menuitem value="#{Title.AsignmentPlane}"  icon="ui-icon-clipboard" outcome="/Plane/AsigPlane"/>
+                                    <p:menuitem value="#{Title.ReceptionPlane}"  icon="ui-icon-disk" outcome="/Plane/CreatePlane"/>
+                                    <p:menuitem value="#{Title.ConsultPlane}"  icon="ui-icon-clipboard" outcome="/Plane/AsigPlane"/>
+                                </p:menu>
+                            </p:tab>
+                                </p:accordionPanel>
+                                <p:accordionPanel activeIndex="null">
+                                <p:tab id="tabSettings" title="#{Title.Settings}">
+                                <p:menu style="height: 120px; width: 300px;">
+                                    <p:menuitem value="#{Title.CreateOperator}"  icon="ui-icon-disk" outcome="/Settings/CreateOperator"/>
+                                    <p:menuitem value="#{Title.ConsultOperator}"  icon="ui-icon-clipboard" outcome="/Settings/ViewOperator"/>
+                                    <p:menuitem value="#{Title.CreateUser}"  icon="ui-icon-disk" outcome="/Settings/CreateUser"/>
+                                    <p:menuitem value="#{Title.ConsultUser}"  icon="ui-icon-clipboard" outcome="/Settings/ViewUser"/>
+                                </p:menu>
+                            </p:tab>
+                            </p:accordionPanel>
+                        
+                        
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h2>
+                        <ui:insert name="title"></ui:insert>
+                    </h2>
+                    <ui:insert name="body"></ui:insert>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+        <script type="text/javascript">
+
+            function logout(xhr, status, args) {
+                setTimeout(function() {
+                    window.location = 'http://127.0.0.1:8080/planoteca_web/';
+                }, 500);
+            }
+            Function Template(){
+                setTimeout(function(){window.location='http://127.0.0.1:8080/planoteca_web/faces/Template';},500);
+            }
+
+            function limpiarForm()
+            {
+                document.getElementById('form').reset();
+            }
+        </script>
+    </f:view>
+
+</html>

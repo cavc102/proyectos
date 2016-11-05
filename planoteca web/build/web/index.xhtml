@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Planoteca</title>
+    </h:head>
+    <h:body>
+       
+        <br />
+        Inicio De Sesion
+        <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        <h:form id="form">
+        <p:panelGrid columns="2">
+            <p:outputLabel for="Login">#{Title.User}</p:outputLabel>  
+            <p:inputText id="Login" value="#{UserController.user.login}" required="True" requiredMessage="#{Title.UserMessage}"/>
+            <p:outputLabel for="Password">#{Title.Password}</p:outputLabel>
+            <p:password id="Password" required="True" value="#{UserController.user.password}" requiredMessage="#{Title.PasswordMessage}"/>
+            <p:commandButton id="Enter" value="#{Title.Enter}" action="Template" ajax="false" />
+            <p:commandButton  value="#{Title.Clear}" ajax="false" immediate="true" icon="ui-icon-refresh" onclick="limpiarForm()" update="@form"/>
+            
+        </p:panelGrid>
+            </h:form>
+       <!-- <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" /> -->
+        <h:link outcome="Template" value="Menu" />
+    </h:body>
+</html>
+
