@@ -18,6 +18,7 @@ public class UserModel {
     private String State;
     private String Role;
     private int Cod_Operator;
+    private String NameOperator;
 
     public UserModel() {
     }
@@ -95,6 +96,20 @@ public class UserModel {
      */
     public void setCod_Operator(int Cod_Operator) {
         this.Cod_Operator = Cod_Operator;
+    }
+
+    /**
+     * @return the NameOperator
+     */
+    public String getNameOperator() {
+        return NameOperator;
+    }
+
+    /**
+     * @param NameOperator the NameOperator to set
+     */
+    public void setNameOperator(String NameOperator) {
+        this.NameOperator = NameOperator;
     }
     
     

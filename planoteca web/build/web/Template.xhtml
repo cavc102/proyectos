@@ -17,7 +17,7 @@
        
     </h:head>
 
-    <h:body>
+        <h:body onload="">
 
             <p:layout fullPage="true">
 
@@ -59,20 +59,20 @@
                             <p:accordionPanel activeIndex="null">
                                 <p:tab id="tabPlane" title="Plano">
                                 <p:menu style="height: 120px; width: 200px;">
-                                    <p:menuitem value="#{Title.CreatePlane}"  icon="ui-icon-disk" outcome="/Plane/CreatePlane"/>
-                                    <p:menuitem value="#{Title.AsignmentPlane}"  icon="ui-icon-clipboard" outcome="/Plane/AsigPlane"/>
-                                    <p:menuitem value="#{Title.ReceptionPlane}"  icon="ui-icon-disk" outcome="/Plane/CreatePlane"/>
-                                    <p:menuitem value="#{Title.ConsultPlane}"  icon="ui-icon-clipboard" outcome="/Plane/AsigPlane"/>
+                                    <p:menuitem value="#{Title.CreatePlane}"  icon="ui-icon-disk" outcome="CreatePlane"/>
+                                    <p:menuitem value="#{Title.AsignmentPlane}"  icon="ui-icon-clipboard" outcome="AsigPlane"/>
+                                    <p:menuitem value="#{Title.ReceptionPlane}"  icon="ui-icon-disk" outcome="CreatePlane"/>
+                                    <p:menuitem value="#{Title.ConsultPlane}"  icon="ui-icon-clipboard" outcome="AsigPlane"/>
                                 </p:menu>
                             </p:tab>
                                 </p:accordionPanel>
                                 <p:accordionPanel activeIndex="null">
                                 <p:tab id="tabSettings" title="#{Title.Settings}">
                                 <p:menu style="height: 120px; width: 200px;">
-                                    <p:menuitem value="#{Title.CreateOperator}"  icon="ui-icon-disk" outcome="/Settings/CreateOperator"/>
-                                    <p:menuitem value="#{Title.ConsultOperator}"  icon="ui-icon-clipboard" outcome="/Settings/ViewOperator"/>
-                                    <p:menuitem value="#{Title.CreateUser}"  icon="ui-icon-disk" outcome="/Settings/CreateUser"/>
-                                    <p:menuitem value="#{Title.ConsultUser}"  icon="ui-icon-clipboard" outcome="/Settings/ViewUser"/>
+                                    <p:menuitem value="#{Title.CreateOperator}"  icon="ui-icon-disk" outcome="CreateOperator"/>
+                                    <p:menuitem value="#{Title.ConsultOperator}"  icon="ui-icon-clipboard" outcome="ViewOperator"/>
+                                    <p:menuitem value="#{Title.CreateUser}"  icon="ui-icon-disk" outcome="CreateUser" />
+                                    <p:menuitem value="#{Title.ConsultUser}"  icon="ui-icon-clipboard" outcome="ViewUser" />
                                 </p:menu>
                             </p:tab>
                             </p:accordionPanel>
@@ -106,6 +106,7 @@
             {
                 document.getElementById('form').reset();
             }
+           
         </script>
     </f:view>
 

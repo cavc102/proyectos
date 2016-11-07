@@ -47,14 +47,16 @@ private ArrayList<UserModel> ListUser;
     }
     
 public void FilterUser(ActionEvent event)throws SQLException {
-this.setSql("SELECT Login, Password, State, role, ID_Operator FROM planoteca.user where Login like '%"+this.getFilterUser()+"%'");
+this.setSql("select a.login, a.password, a.State,a.Role,a.ID_Operator, b.Name, b.LastName FROM planoteca.user a, planoteca.operator b where Login like '%"
+        +this.getFilterUser()+"%' and  a.id_operator = b.`Ident_Num`");
 ConsultOper();
 }
     
 public void ConsultOper() throws SQLException {
         this.setListUser((ArrayList<UserModel>) new ArrayList());
         if(this.getSql()==null){
-        this.setSql("SELECT Login, Password, State, role, ID_Operator FROM planoteca.user");
+        this.setSql("select a.login, a.password, a.State,a.Role, b.Name, b.LastName"+
+                "   from planoteca.user a, planoteca.operator b where a.id_operator = b.`Ident_Num`");
         
         }
         
@@ -73,6 +75,7 @@ public void ConsultOper() throws SQLException {
                 UserModel.setState(rs.getString("State"));
                 UserModel.setRole(rs.getString("Role"));
                 UserModel.setCod_Operator(rs.getInt("ID_Operator"));
+                UserModel.setNameOperator(rs.getString("Name")+" "+rs.getString("LastName"));
                 
                 
                 this.getListUser().add(UserModel);
@@ -83,7 +86,7 @@ public void ConsultOper() throws SQLException {
             con.close();
 
         } catch (Exception e) {
-            System.out.println(this.getClass().getName() + "  consulta Operario Error1->" + e.getMessage());
+            System.out.println(this.getClass().getName() + "  consulta Usuario Error1->" + e.getMessage());
             st.close();
             con.close();
         } finally {
@@ -129,6 +132,11 @@ public void ConsultOper() throws SQLException {
         }
         
 
+    }
+    
+    public String Update(ActionEvent event){
+    
+    return ("UpdateUser.xhtml");
     }
 
     public String getSql() {

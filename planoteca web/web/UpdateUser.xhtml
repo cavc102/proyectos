@@ -16,7 +16,7 @@
             <h:form id="form" >
                 <h:panelGrid columns="2" styleClass="panelGrid">
                     <p:outputLabel value="#{Title.User}" for="User" />
-                    <p:inputText id="User" value='#{UserController.userModel.login}' title="#{Title.User}" style="width: 220px;" required="true" requiredMessage="#{Title.UserMessage}"/>
+                    <p:inputText id="User" value='#{UserController.userModel.login}' title="#{Title.User}" style="width: 220px;" required="true" requiredMessage="#{Title.UserMessage}" readonly="True"/>
                     <p:outputLabel value="#{Title.Password}" for="Password" />
                     <p:password  id="Password" value="#{UserController.userModel.password}" title="#{Title.Password}" required="true" requiredMessage="#{Title.PasswordMessage}" style="width: 220px;"/>
                     <p:outputLabel value="#{Title.State}" for="State" />
@@ -34,11 +34,9 @@
                         <f:selectItem itemValue="Operator" itemLabel="Operario" />
                     </p:selectOneMenu>
                     <p:outputLabel value="#{Title.Operator}" for="Operator" />
-                    <p:selectOneMenu  filter="true" filterMatchMode="startsWith" id="Operator" value="#{UserController.userModel.cod_Operator}"  required="true" requiredMessage="#{Title.OperatorMessage}" style="width: 230px;">
-                        <f:selectItem itemValue="" itemLabel="#{Title.OperatorOneMenu}" />
-                        <f:selectItems value="#{OperatorController.getListOperator()}" var="Ope" 
-                                       itemValue="#{Ope.num_Id}" itemLabel="#{Ope.name_operator} #{Ope.lastName_Operator}" />
-                    </p:selectOneMenu>
+                    <p:inputText id="Operator" value="#{UserController.userModel.cod_Operator}" title="#{Title.Operator}" style="width: 220px;" required="true" requiredMessage="#{Title.OperatorMessage}" readonly="True"/>
+                    
+                    
                 </h:panelGrid>
                 <h:panelGrid columns="3" styleClass="link">
                     <p:commandButton  value="#{Title.Save}" action="#{UserController.CreateUser(event)}"  ajax="false" icon="ui-icon-disk" update="messages"/> 

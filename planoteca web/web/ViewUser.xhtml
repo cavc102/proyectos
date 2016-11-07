@@ -13,6 +13,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form id="form" >
+                <p:ajax event="keyup"  listener="#{OperatorController.FilterConsultOper(event)}" />
                 <h:panelGrid columns="2" styleClass="panelGrid" >
                     <p:outputLabel value="#{Title.User}" for="User" />
                     <p:inputText id="User" value='#{UserController.filterUser}' title="#{Title.User}" style="width: 220px;" />
@@ -22,21 +23,33 @@
                          
                         <p:dataTable id="Users" var="Users" value="#{UserController.getListUser()}" scrollable="true" scrollHeight="250">
                           
-                        <p:column headerText="#{Title.Num_id}" >
-                            <h:outputText value="#{ItemUser.login}" />
+                            <p:column headerText="#{Title.login}" >
+                            <h:outputText value="#{Users.login}" />
                         </p:column>
 
-                        <p:column headerText="#{Title.Type_Doc}" >
-                            <h:outputText value="#{ItemOper.type_Doc}" />
+                            <p:column headerText="#{Title.State}" >
+                                <h:outputText value="#{Users.state}" />
+                                
                         </p:column>
 
-                        <p:column headerText="#{Title.NameOperator}" >
-                            <h:outputText value="#{ItemOper.name_operator}" />
+                            <p:column headerText="#{Title.Rol}" >
+                                <h:outputText value="#{Users.role}" />
+                                
                         </p:column>
 
-                        <p:column headerText="#{Title.Lastname}" >
-                            <h:outputText value="#{ItemOper.lastName_Operator}" />
+
+                            <p:column headerText="#{Title.NameOperator}" >
+                                <h:outputText value="#{Users.nameOperator}" />
                         </p:column>
+
+                            <p:column style="width:32px;text-align: center">
+                                <p:commandButton action="#{UserController.Update(event)}" icon="ui-icon-search" title="View">
+                                    
+            </p:commandButton>
+        </p:column>
+                            
+                            
+                        
                     </p:dataTable>
                
                     </h:panelGrid>

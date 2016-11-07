@@ -47,7 +47,7 @@ public class OperatorControl {
      */
     public OperatorControl() throws SQLException {
         this.DB = new Connections();
-        this.ConsultOper();
+//        this.ConsultOper();
     }
 
   
@@ -70,7 +70,9 @@ this.setSql("SELECT Ident_Num, Doc_Type, Name, LastName FROM planoteca.operator 
             con = DB.Conect();
             st = con.createStatement();
             rs = st.executeQuery(this.getSql());
+            
 
+            System.out.println(rs.getRow());
             while (rs.next()) {
                
                 Oper = new OperatorModel();
