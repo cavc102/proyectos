@@ -47,7 +47,7 @@ public class OperatorControl {
      */
     public OperatorControl() throws SQLException {
         this.DB = new Connections();
-        
+        this.ConsultOper();
     }
 
   

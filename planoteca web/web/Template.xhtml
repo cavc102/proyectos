@@ -24,7 +24,7 @@
                
                 <p:layoutUnit  position="north" size="75" resizable="false" closable="false" collapsible="false" style="padding: 0px;background-color: #036fab">
                     <h:form >  
-                        <p:growl id="messages"/>
+                        <p:growl id="messages" autoUpdate="True" rendered="True"/>
                         <p:panel style="margin-bottom:2px">
                             <div align="center">
                                 <h:panelGrid columns="5" width="100%" >
@@ -68,10 +68,10 @@
                                 </p:accordionPanel>
                                 <p:accordionPanel activeIndex="null">
                                 <p:tab id="tabSettings" title="#{Title.Settings}">
-                                <p:menu style="height: 120px; width: 300px;">
+                                <p:menu style="height: 120px; width: 200px;">
                                     <p:menuitem value="#{Title.CreateOperator}"  icon="ui-icon-disk" outcome="/Settings/CreateOperator"/>
                                     <p:menuitem value="#{Title.ConsultOperator}"  icon="ui-icon-clipboard" outcome="/Settings/ViewOperator"/>
-                                    <p:menuitem value="#{Title.CreateUser}"  icon="ui-icon-disk" outcome="/Settings/CreateUser" />
+                                    <p:menuitem value="#{Title.CreateUser}"  icon="ui-icon-disk" outcome="/Settings/CreateUser"/>
                                     <p:menuitem value="#{Title.ConsultUser}"  icon="ui-icon-clipboard" outcome="/Settings/ViewUser"/>
                                 </p:menu>
                             </p:tab>

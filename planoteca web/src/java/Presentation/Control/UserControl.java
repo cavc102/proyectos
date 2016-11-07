@@ -33,7 +33,7 @@ public class UserControl {
     private Statement st;
     private ResultSet rs;
 private UserModel UserModel;
-private OperatorControl OperCtr;
+
 private String Sql;
 private ArrayList<UserModel> ListUser;
     /**
@@ -42,14 +42,12 @@ private ArrayList<UserModel> ListUser;
     public UserControl() throws SQLException {
         this.DB = new Connections();
         this.UserModel = new UserModel();
-     OperCtr = new OperatorControl();   
-       OperCtr.ConsultOper();
-       
+    
         
     }
     
 public void FilterUser(ActionEvent event)throws SQLException {
-this.setSql("SELECT Login, Password, State, role, ID_Operator FROM planoteca.user where Login='"+this.getFilterUser()+"'");
+this.setSql("SELECT Login, Password, State, role, ID_Operator FROM planoteca.user where Login like '%"+this.getFilterUser()+"%'");
 ConsultOper();
 }
     
@@ -64,7 +62,7 @@ public void ConsultOper() throws SQLException {
             con = DB.Conect();
             st = con.createStatement();
             rs = st.executeQuery(this.getSql());
-
+            
             while (rs.next()) {
                
                 UserModel = new UserModel();
