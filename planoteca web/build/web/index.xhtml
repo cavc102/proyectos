@@ -16,9 +16,9 @@
         <h:form id="form">
         <p:panelGrid columns="2">
             <p:outputLabel for="Login">#{Title.User}</p:outputLabel>  
-            <p:inputText id="Login" value="#{UserController.user.login}" required="True" requiredMessage="#{Title.UserMessage}"/>
+            <p:inputText id="Login" value="#{UserController.userModel.login}" required="True" requiredMessage="#{Title.UserMessage}"/>
             <p:outputLabel for="Password">#{Title.Password}</p:outputLabel>
-            <p:password id="Password" required="True" value="#{UserController.user.password}" requiredMessage="#{Title.PasswordMessage}"/>
+            <p:password id="Password" required="True" value="#{UserController.userModel.password}" requiredMessage="#{Title.PasswordMessage}"/>
             <p:commandButton id="Enter" value="#{Title.Enter}" action="Template" ajax="false" />
             <p:commandButton  value="#{Title.Clear}" ajax="false" immediate="true" icon="ui-icon-refresh" onclick="limpiarForm()" update="@form"/>
             

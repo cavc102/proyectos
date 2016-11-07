@@ -16,14 +16,14 @@
                 <h:panelGrid columns="2" styleClass="panelGrid" >
                     <p:outputLabel value="#{Title.User}" for="User" />
                     <p:inputText id="User" value='#{UserController.filterUser}' title="#{Title.User}" style="width: 220px;" />
-                    <p:commandButton  value="#{Title.Consult}" action="#{OperatorController.FilterConsultOper(event)}"  ajax="false" icon="ui-icon-disk" /> 
+                    <p:commandButton  value="#{Title.Consult}" action="#{UserController.FilterUser(event)}"  ajax="false" icon="ui-icon-disk" /> 
                     </h:panelGrid>
                     <h:panelGrid >
                          
-                        <p:dataTable id="Operators" var="ItemOper" value="#{OperatorController.getListOperator()}" scrollable="true" scrollHeight="250">
+                        <p:dataTable id="Users" var="Users" value="#{UserController.getListUser()}" scrollable="true" scrollHeight="250">
                           
                         <p:column headerText="#{Title.Num_id}" >
-                            <h:outputText value="#{ItemOper.num_Id}" />
+                            <h:outputText value="#{ItemUser.login}" />
                         </p:column>
 
                         <p:column headerText="#{Title.Type_Doc}" >

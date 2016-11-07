@@ -33,28 +33,30 @@ public class UserControl {
     private Statement st;
     private ResultSet rs;
 private UserModel UserModel;
+private OperatorControl OperCtr;
 private String Sql;
 private ArrayList<UserModel> ListUser;
     /**
      * Creates a new instance of UserControl
      */
-    public UserControl() {
+    public UserControl() throws SQLException {
         this.DB = new Connections();
         this.UserModel = new UserModel();
-        
+     OperCtr = new OperatorControl();   
+       OperCtr.ConsultOper();
        
         
     }
     
 public void FilterUser(ActionEvent event)throws SQLException {
-
-
+this.setSql("SELECT Login, Password, State, role, ID_Operator FROM planoteca.user where Login='"+this.getFilterUser()+"'");
+ConsultOper();
 }
     
 public void ConsultOper() throws SQLException {
-        this.ListUser = new ArrayList();
+        this.setListUser((ArrayList<UserModel>) new ArrayList());
         if(this.getSql()==null){
-        this.setSql("SELECT Ident_Num, Doc_Type, Name, LastName FROM planoteca.operator");
+        this.setSql("SELECT Login, Password, State, role, ID_Operator FROM planoteca.user");
         
         }
         
@@ -72,10 +74,11 @@ public void ConsultOper() throws SQLException {
                 UserModel.setPassword(rs.getString("Password"));
                 UserModel.setState(rs.getString("State"));
                 UserModel.setRole(rs.getString("Role"));
-                UserModel.setCod_Operator(rs.getInt("Cod_Operator"));
+                UserModel.setCod_Operator(rs.getInt("ID_Operator"));
                 
                 
-                this.ListUser.add(UserModel);
+                this.getListUser().add(UserModel);
+                System.out.println("se realizo consulta");
             }
            
             st.close();
