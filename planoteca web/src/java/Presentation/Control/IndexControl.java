@@ -7,6 +7,7 @@ package Presentation.Control;
 
 import Logic.Administrator.Connections;
 import Presentation.Model.IndexModel;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,9 +17,9 @@ import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -60,10 +61,9 @@ public class IndexControl {
             con = DB.Conect();
             st = con.createStatement();
             rs = st.executeQuery("select a.login, a.password, a.State,a.Role,a.ID_Operator, b.Name, b.LastName FROM planoteca.user a, planoteca.operator b where a.Login = '"
-            + login.getLogin()+"' and a.password = '" + login.getPassword()+"'");
-            System.out.println("select a.login, a.password, a.State,a.Role,a.ID_Operator, b.Name, b.LastName FROM planoteca.user a, planoteca.operator b where Login = '"
-            + login.getLogin()+"' and a.password = '" + login.getPassword()+"'");
-            if(rs.next()){
+            + login.getLogin()+"' and a.password = '" + login.getPassword()+"' and a.ID_Operator = b.Ident_Num");
+            
+            
              while (rs.next()) {
                this.setLoginUser(rs.getString("Login"));
                 this.setPasswordUser(rs.getString("Password"));
@@ -72,20 +72,22 @@ public class IndexControl {
                 this.setCodOper(rs.getString("ID_Operator"));
                 this.setNameUser(rs.getString("Name")+" "+rs.getString("LastName"));  
                 
-             
+             System.out.println(this.getNameUser());
              }
-             
+             if(this.getRoleUser()!=null){
              context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Successful","Bienvenido (a): " +this.getNameUser() ) );
+             ExternalContext externalContext =  context.getExternalContext();
+    externalContext.redirect("Template.xhtml");
+             }else{
             
-            }else{
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","El Usuario o Password No Son Correctos" ) );
             
+             }
             
-            }
             st.close();
             con.close();
             
-          updatePage();
+         
             
         }catch (Exception e) {
             System.out.println(this.getClass().getName() + "  consulta de Usuario Login Error1->" + e.getMessage());
@@ -103,12 +105,7 @@ public class IndexControl {
    
     }
 
-    public String updatePage(){
-    System.out.println("entra updatepage");
-    return ("faces/Template.xhtml");
-    
-    }
-    
+       
     public String getLoginUser() {
         return LoginUser;
     }
