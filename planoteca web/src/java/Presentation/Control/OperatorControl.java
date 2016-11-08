@@ -85,6 +85,7 @@ this.setSql("SELECT Ident_Num, Doc_Type, Name, LastName FROM planoteca.operator 
            
             st.close();
             con.close();
+          
 
         } catch (Exception e) {
             System.out.println(this.getClass().getName() + "  consulta Operario Error1->" + e.getMessage());
