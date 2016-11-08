@@ -21,7 +21,7 @@
             </h:panelGroup>
             
             <h:form id="form" >
-                <p:ajax event="keyup" rendered="Operator" onstart="#{OperatorController.FilterConsultOper(event)}"/>
+                
                 <h:panelGrid columns="2" styleClass="panelGrid">
                     <p:outputLabel value="#{Title.User}" for="User" />
                     <p:inputText id="User" value='#{UserController.userModel.login}' title="#{Title.User}" style="width: 220px;" required="true" requiredMessage="#{Title.UserMessage}"/>
