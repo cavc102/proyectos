@@ -6,6 +6,7 @@
 package Presentation.Control;
 
 import Logic.Administrator.Connections;
+import Logic.Transformations.OperatorTransformations;
 
 import Presentation.Model.OperatorModel;
 import java.sql.Connection;
@@ -34,11 +35,11 @@ public class OperatorControl {
     private Statement st;
     private ResultSet rs;
     
-    private ArrayList<OperatorModel> ListOperator;
+    public ArrayList<OperatorModel> ListOperator;
     private String Name;
     private String Lastname;
     private String Sql;
-
+    private OperatorTransformations OpTrans;
     private OperatorModel Oper;
 
 
@@ -47,7 +48,9 @@ public class OperatorControl {
      */
     public OperatorControl() throws SQLException {
         this.DB = new Connections();
-     this.ConsultOper();
+        
+        
+    // this.ConsultOper();
     }
 
   
@@ -56,9 +59,17 @@ public class OperatorControl {
         
 this.setSql("SELECT Ident_Num, Doc_Type, Name, LastName FROM planoteca.operator where Name LIKE '%" + this.getName()
                         + "%' and LastName LIKE '%" + this.getLastname() + "%'");
-         ConsultOper();
+        // ConsultOper();
     }
 
+    public void OperatorConsult(ActionEvent event) throws SQLException{
+        this.OpTrans = new OperatorTransformations();
+        boolean State = false;
+    State=this.OpTrans.ConsulOperator(this.getName(), this.getLastname());
+   
+    }
+    
+    
     public void ConsultOper() throws SQLException {
         this.ListOperator = new ArrayList();
         if(this.getSql()==null){

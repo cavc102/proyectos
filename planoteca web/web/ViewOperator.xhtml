@@ -18,7 +18,7 @@
                     <p:inputText id="Name_Oper" value='#{OperatorController.name}' title="#{Title.NameOperator}" style="width: 220px;" />
                     <p:outputLabel value="#{Title.Lastname}" for="Lastname_Oper" />                   
                     <p:inputText id="Lastname_Oper" value="#{OperatorController.lastname}" title="#{Title.Lastname}"  style="width: 220px;" />
-                    <p:commandButton  value="#{Title.Consult}" action="#{OperatorController.FilterConsultOper(event)}"  ajax="false" icon="ui-icon-disk" /> 
+                    <p:commandButton  value="#{Title.Consult}" action="#{OperatorController.OperatorConsult(event)}"  ajax="false" icon="ui-icon-disk" /> 
                     </h:panelGrid>
                     <h:panelGrid >
                          
