@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"> 
+
+ <ui:define name="body">
+     <p:panel id="basic" header="#{Title.CreateOperator}" footer="#{Title.CreateOperator}" style="margin-bottom:20px">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form id="form">
+                <h:panelGrid columns="2" styleClass="panelGrid">
+                    <p:outputLabel value="#{Title.Num_id}" for="Num_Id" />
+                    <p:inputText id="Num_Id" value='#{OperatorController.oper.num_Id}' title="#{Title.Num_id}" style="width: 220px;" required="true" requiredMessage="#{Title.NumIdMessage}"/>
+                    <p:outputLabel value="#{Title.Type_Doc}" for="Type_Doc" />
+                    
+                    <p:selectOneMenu  filter="true" filterMatchMode="startsWith" id="Type_Doc" value="#{OperatorController.oper.type_Doc}"  required="true" requiredMessage="#{Title.Type_DocMessage}" style="width: 230px;">
+                        <f:selectItem itemValue="" itemLabel="#{Title.Type_DocOneMenu}" />
+                        <f:selectItem itemValue="CE" itemLabel="Cedula De Ciudadania" />
+                        <f:selectItem itemValue="CE" itemLabel="Cedula De Extranjeria" />
+                        <f:selectItem itemValue="PS" itemLabel="Pasaporte" />
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel value="#{Title.NameOperator}" for="Name_Oper" />
+                    <p:inputText id="Name_Oper" value="#{OperatorController.oper.name_operator}" title="#{Title.NameOperator}" required="true" requiredMessage="#{Title.Name_operatorMessage}" style="width: 220px;"/>
+                    <p:outputLabel value="#{Title.Lastname}" for="Lastname" />
+                    <p:inputText id="Lastname" value="#{OperatorController.oper.lastName_Operator}" title="#{Title.Lastname}" required="true" requiredMessage="#{Title.LastnameMenssage}" style="width: 220px;"/>
+                    
+                </h:panelGrid>
+                <h:panelGrid columns="3" styleClass="link">
+                    <p:commandButton  value="#{Title.Save}"  ajax="false" icon="ui-icon-disk" action="#{OperatorController.CreateOperator(event)}"/> 
+                    <p:commandButton  value="#{Title.Clear}" ajax="false" immediate="true" icon="ui-icon-refresh" onclick="limpiarForm()" update="@form"/>
+                    <p:commandButton icon="ui-icon-home" value="#{Title.Exit}"  action="http://localhost:8080/planoteca_web/faces/Template.xhtml" />
+                </h:panelGrid>   
+            </h:form>
+        </p:panel>
+    </ui:define>
+    
+    
+
+
+
+
+</ui:composition>
+    

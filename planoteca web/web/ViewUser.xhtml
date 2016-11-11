@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"> 
+
+    <ui:define name="body">
+        <p:panel id="basic" header="#{Title.ViewUser}" footer="#{Title.ViewUser}" style="margin-bottom:20px">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form id="form" >
+                <p:ajax event="keyup"  listener="#{OperatorController.FilterConsultOper(event)}" />
+                <h:panelGrid columns="2" styleClass="panelGrid" >
+                    <p:outputLabel value="#{Title.User}" for="User" />
+                    <p:inputText id="User" value='#{UserController.filterUser}' title="#{Title.User}" style="width: 220px;" />
+                    <p:commandButton  value="#{Title.Consult}" action="#{UserController.FilterUser(event)}"  ajax="false" icon="ui-icon-disk" /> 
+                    </h:panelGrid>
+                    <h:panelGrid >
+                         
+                        <p:dataTable id="Users" var="Users" value="#{UserController.getListUser()}" scrollable="true" scrollHeight="250">
+                          
+                            <p:column headerText="#{Title.login}" >
+                            <h:outputText value="#{Users.login}" />
+                        </p:column>
+
+                            <p:column headerText="#{Title.State}" >
+                                <h:outputText value="#{Users.state}" />
+                                
+                        </p:column>
+
+                            <p:column headerText="#{Title.Rol}" >
+                                <h:outputText value="#{Users.role}" />
+                                
+                        </p:column>
+
+
+                            <p:column headerText="#{Title.NameOperator}" >
+                                <h:outputText value="#{Users.nameOperator}" />
+                        </p:column>
+
+                            <p:column style="width:32px;text-align: center">
+                                <p:commandButton action="#{UserController.Update(event)}" icon="ui-icon-search" title="View">
+                                    
+            </p:commandButton>
+        </p:column>
+                            
+                            
+                        
+                    </p:dataTable>
+               
+                    </h:panelGrid>
+                <h:panelGrid columns="3" styleClass="link">
+                    <p:commandButton  value="#{Title.Save}"  ajax="false" icon="ui-icon-disk"/> 
+                    <p:commandButton  value="#{Title.Clear}" ajax="false" immediate="true" icon="ui-icon-refresh" onclick="limpiarForm()" update="@form"/>
+                    <p:commandButton icon="ui-icon-home" value="#{Title.Exit}"  action="http://localhost:8080/planoteca_web/faces/Template.xhtml" />
+                </h:panelGrid>   
+            </h:form>
+        </p:panel>
+    </ui:define>
+
+
+
+
+
+
+</ui:composition>

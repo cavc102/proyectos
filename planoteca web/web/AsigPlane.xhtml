@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/Template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    
+    <ui:define name="body">
+        <p:panel id="basic" header="#{Title.AsignmentPlane}" footer="Máquina" style="margin-bottom:20px">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form id="form">
+                <h:panelGrid columns="2" styleClass="panelGrid">
+                    <p:outputLabel value="Código maquina:" for="idMaquina" />
+                    <p:inputText id="idMaquina" value='#{maquinaController.getIdTable("id_maquina","MAQUINA")}' title="#{bundle.CreateMaquinaTitle_nombre}" style="width: 220px;" disabled="true"/>
+                    <p:outputLabel value="#{bundle.CreateMaquinaLabel_nombre}" for="nombre" />
+                    <p:inputText id="nombre" value="#{maquinaController.selected.nombre}" title="#{bundle.CreateMaquinaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMaquinaRequiredMessage_nombre}" style="width: 220px;"/>
+                    <p:outputLabel value="#{bundle.CreateMaquinaLabel_tipo}" for="tipo" />
+                    <p:selectOneMenu filter="true" filterMatchMode="startsWith" id="tipo" value="#{maquinaController.selected.tipo}" required="true" requiredMessage="#{bundle.CreateMaquinaRequiredMessage_tipo}" style="width: 230px;">
+                        <f:selectItem itemValue="" itemLabel="Elija Un Tipo De Maquina" />
+                        <f:selectItem itemValue="Corte" itemLabel="Corte" />
+                        <f:selectItem itemValue="Corte Y Perforacion" itemLabel="Corte y Perforacion" />
+                        <f:selectItem itemValue="Perforacion" itemLabel="Perforacion" />			
+                    </p:selectOneMenu>  
+                    <p:outputLabel value="#{bundle.CreateMaquinaLabel_ubicacion}" for="ubicacion" />
+                    <p:selectOneMenu  filter="true" filterMatchMode="startsWith" id="ubicacion" value="#{maquinaController.selected.ubicacion}"  required="true" requiredMessage="#{bundle.CreateMaquinaRequiredMessage_ubicacion}" style="width: 230px;">
+                        <f:selectItem itemValue="" itemLabel="Elija Una Ubicacion De La Maquina" />
+                        <f:selectItem itemValue="Preparacion" itemLabel="Preparacion" />
+                        <f:selectItem itemValue="Linea De Perfiles" itemLabel="Linea De Perfiles" />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <h:panelGrid columns="3" styleClass="link">
+                    <p:commandButton action="#{maquinaController.create}" value="#{bundle.CreateMaquinaSaveLink}"  ajax="false" icon="ui-icon-disk"/> 
+                    <p:commandButton action="#{maquinaController.prepareList}" value="#{bundle.CreateMaquinaShowAllLink}" ajax="false" immediate="true" icon="ui-icon-clipboard"/>
+                    <p:commandButton icon="ui-icon-arrowrefresh-1-e" value="Limpiar" onclick="limpiarForm()" update="@form"/>
+                </h:panelGrid>   
+            </h:form>
+        </p:panel>
+    </ui:define>
+</ui:composition>
+
