@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,7 @@ public class OperatorDAO {
     private ResultSet rs;
     private OperatorModel Oper; 
     private OperatorControl OpCtr;
-  
+    public ArrayList<OperatorModel> ListOperator;
     
     
     
@@ -36,6 +37,7 @@ public class OperatorDAO {
      this.DB = new Connections(); 
      Oper = new OperatorModel ();
      OpCtr = new OperatorControl ();
+     
     }
   
     
@@ -43,6 +45,7 @@ public class OperatorDAO {
     
     
     public boolean DBConsultOperator(String op) throws SQLException{
+        this.ListOperator = new ArrayList();
         boolean consul=false;
         try {
             con = DB.Conect();
@@ -58,10 +61,10 @@ public class OperatorDAO {
                 Oper.setType_Doc(rs.getString("Doc_Type"));
                 Oper.setName_operator(rs.getString("Name"));
                 Oper.setLastName_Operator(rs.getString("LastName"));
-              OpCtr.ListOperator.add(Oper);
-              consul=true;
+             
+//              this.ListOperator.add(Oper);
             }
-           
+           consul=true;
             st.close();
             con.close();
           
